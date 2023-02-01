@@ -1,6 +1,6 @@
 package com.shashank.android.poms;
 
-import com.shashank.android.utils.MobileActions;
+import com.shashank.android.utils.AndroidActions;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.By;
@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
-public class LogInPage extends MobileActions {
+public class LogInPage extends AndroidActions {
     private final AndroidDriver driver ;
 
     @FindBy(id="com.androidsample.generalstore:id/spinnerCountry")

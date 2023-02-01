@@ -14,7 +14,6 @@ public class BaseTest {
 
     AppiumDriverLocalService service;
     AndroidDriver driver;
-
     LogInPage logInPage;
 
     @BeforeClass

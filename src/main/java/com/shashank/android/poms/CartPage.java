@@ -1,14 +1,12 @@
 package com.shashank.android.poms;
 
-import com.shashank.android.utils.MobileActions;
+import com.shashank.android.utils.AndroidActions;
 import io.appium.java_client.android.AndroidDriver;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 
-public class CartPage extends MobileActions {
+public class CartPage extends AndroidActions {
 
     private final AndroidDriver driver;
 

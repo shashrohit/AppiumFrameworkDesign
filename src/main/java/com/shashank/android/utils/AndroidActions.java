@@ -2,16 +2,16 @@ package com.shashank.android.utils;
 
 import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumBy;
-import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WrapsElement;
 import org.openqa.selenium.remote.RemoteWebElement;
 
-public class MobileActions {
+public class AndroidActions extends AppiumUtils {
 
-    private final AndroidDriver driver;
-    public MobileActions(AndroidDriver driver){
+    public AndroidActions(AppiumDriver driver){
+        super(driver);
         this.driver = driver;
     }
 
@@ -28,7 +28,6 @@ public class MobileActions {
     }
 
     public void swipe(WebElement element, String direction){
-
         ((JavascriptExecutor)driver).executeScript("mobile: swipeGesture", ImmutableMap.of("elementId",
                 ((RemoteWebElement)element).getId(), "direction", direction,
                 "percent", 0.75));
