@@ -1,21 +1,9 @@
+import TestUtils.BaseTest;
 import com.shashank.android.poms.AddToCartPage;
 import com.shashank.android.poms.CartPage;
-import com.shashank.android.poms.LogInPage;
-import io.appium.java_client.android.Activity;
-import io.appium.java_client.android.nativekey.AndroidKey;
-import io.appium.java_client.android.nativekey.KeyEvent;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.time.Duration;
-import java.util.List;
-import java.util.Set;
 
 public class AddToCartTest extends BaseTest {
 

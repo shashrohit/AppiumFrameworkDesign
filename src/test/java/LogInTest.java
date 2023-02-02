@@ -1,3 +1,4 @@
+import TestUtils.BaseTest;
 import com.shashank.android.poms.LogInPage;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -19,17 +20,17 @@ public class LogInTest extends BaseTest {
         logInPage.navigateBack();
     }
 
-    @Test
+    @Test(groups = "Smoke")
     public void logInError() throws InterruptedException {
         LogInPage logInForm = new LogInPage(driver);
         logInForm.submitForm();
-        logInForm.verifyErrorMessage("Please enter your name");
+        logInForm.verifyErrorMessage("Please enter your names");
         Thread.sleep(2000);
     }
 
     @DataProvider
     public Object[][] getLoginData() throws IOException {
-        List<HashMap<String, String>> data = getJsonData(System.getProperty("user.dir") + "//src//main//java//com//shashank//android//testdata//logindata.json");
+        List<HashMap<String, String>> data = getJsonData(System.getProperty("user.dir") + "//src//test//java//testdata//logindata.json");
         return new Object[][]{{data.get(0)}, {data.get(1)}};
     }
 }
