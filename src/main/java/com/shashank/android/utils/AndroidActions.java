@@ -2,7 +2,9 @@ package com.shashank.android.utils;
 
 import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumBy;
-import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WrapsElement;
@@ -10,8 +12,8 @@ import org.openqa.selenium.remote.RemoteWebElement;
 
 public class AndroidActions extends AppiumUtils {
 
-    public AndroidActions(AppiumDriver driver){
-        super(driver);
+    AndroidDriver driver;
+    public AndroidActions(AndroidDriver driver){
         this.driver = driver;
     }
 
@@ -31,5 +33,9 @@ public class AndroidActions extends AppiumUtils {
         ((JavascriptExecutor)driver).executeScript("mobile: swipeGesture", ImmutableMap.of("elementId",
                 ((RemoteWebElement)element).getId(), "direction", direction,
                 "percent", 0.75));
+    }
+
+    public void navigateBack(){
+        driver.pressKey(new KeyEvent(AndroidKey.BACK));
     }
 }

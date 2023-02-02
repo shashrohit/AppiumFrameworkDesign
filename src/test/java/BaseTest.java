@@ -1,4 +1,5 @@
 import com.shashank.android.poms.LogInPage;
+import com.shashank.android.utils.AppiumUtils;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
@@ -10,7 +11,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 
-public class BaseTest {
+public class BaseTest extends AppiumUtils {
 
     AppiumDriverLocalService service;
     AndroidDriver driver;
