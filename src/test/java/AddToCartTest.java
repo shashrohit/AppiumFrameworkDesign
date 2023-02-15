@@ -21,19 +21,26 @@ public class AddToCartTest extends BaseTest {
         ProductsPage products = logInPage.submitForm();
         Thread.sleep(2000);
 
-        double expectedCost = 0;
-        products.addItemToCart("Converse All Star");
-        expectedCost += products.getItemPrice("Converse All Star");
 
-        products.addItemToCart("Air Jordan 9 Retro");
-        expectedCost += products.getItemPrice("Air Jordan 9 Retro");
+        String [] testProducts = new String[]{"Converse All Star", "Air Jordan 9 Retro"};
+        double expectedCost = 0;
+        products.addProductToCart(testProducts[0]);
+        expectedCost += products.getProductPrice(testProducts[0]);
+
+        products.addProductToCart(testProducts[1]);
+        expectedCost += products.getProductPrice(testProducts[1]);
         Thread.sleep(2000);
 
         CartPage cartPage = products.navigateToCart();
         Thread.sleep(2000);
 
-        double actualCost = cartPage.getDisplayedCost();
+        double actualCost = cartPage.getTotalPurchaseAmount();
         Assert.assertEquals(expectedCost, actualCost);
+
+        Assert.assertEquals(cartPage.getProductsCount(), 2);
+        String[] actualProducts = cartPage.getProductsNames();
+
+        Assert.assertEquals(testProducts, actualProducts);
 
         cartPage.acceptTerms();
         cartPage.selectSendEmailsOption();

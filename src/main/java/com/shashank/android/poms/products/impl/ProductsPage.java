@@ -30,7 +30,7 @@ public class ProductsPage extends AndroidActions implements IProductsPage {
     }
 
     @Override
-    public void addItemToCart(String itemName){
+    public void addProductToCart(String itemName){
         scrollIntoView(itemName);
         for(int i=0; i<products.size(); i++){
             if(products.get(i).getText().equalsIgnoreCase(itemName)){
@@ -40,13 +40,18 @@ public class ProductsPage extends AndroidActions implements IProductsPage {
     }
 
     @Override
+    public void removeProductToCart(String itemName) {
+        this.addProductToCart(itemName);
+    }
+
+    @Override
     public CartPage navigateToCart(){
         this.navToCartBtn.click();
         return new CartPage(driver);
     }
 
     @Override
-    public double getItemPrice(String itemName){
+    public double getProductPrice(String itemName){
         scrollIntoView(itemName);
         for(int i=0; i < products.size(); i++){
             if(products.get(i).getText().equalsIgnoreCase(itemName)){
