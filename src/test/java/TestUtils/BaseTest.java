@@ -1,6 +1,6 @@
 package TestUtils;
 
-import com.shashank.android.poms.LogInPage;
+import com.shashank.android.poms.login.impl.LogInPage;
 import com.shashank.android.utils.AppiumUtils;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;

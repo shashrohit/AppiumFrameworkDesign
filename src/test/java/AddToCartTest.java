@@ -1,6 +1,6 @@
 import TestUtils.BaseTest;
-import com.shashank.android.poms.AddToCartPage;
-import com.shashank.android.poms.CartPage;
+import com.shashank.android.poms.products.impl.ProductsPage;
+import com.shashank.android.poms.cart.CartPage;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -18,18 +18,18 @@ public class AddToCartTest extends BaseTest {
         logInPage.selectCountry("Argentina");
         logInPage.setGender("female");
         logInPage.setNameField("Shashank");
-        AddToCartPage addToCartPage = logInPage.submitForm();
+        ProductsPage products = logInPage.submitForm();
         Thread.sleep(2000);
 
         double expectedCost = 0;
-        addToCartPage.addItemToCart("Converse All Star");
-        expectedCost += addToCartPage.getItemPrice("Converse All Star");
+        products.addItemToCart("Converse All Star");
+        expectedCost += products.getItemPrice("Converse All Star");
 
-        addToCartPage.addItemToCart("Air Jordan 9 Retro");
-        expectedCost += addToCartPage.getItemPrice("Air Jordan 9 Retro");
+        products.addItemToCart("Air Jordan 9 Retro");
+        expectedCost += products.getItemPrice("Air Jordan 9 Retro");
         Thread.sleep(2000);
 
-        CartPage cartPage = addToCartPage.navigateToCart();
+        CartPage cartPage = products.navigateToCart();
         Thread.sleep(2000);
 
         double actualCost = cartPage.getDisplayedCost();

@@ -1,48 +1,51 @@
-package com.shashank.android.poms;
+package com.shashank.android.poms.products.impl;
 
+import com.shashank.android.poms.cart.CartPage;
+import com.shashank.android.poms.products.IProductsPage;
 import com.shashank.android.utils.AndroidActions;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 import java.util.List;
 
-public class AddToCartPage extends AndroidActions {
+public class ProductsPage extends AndroidActions implements IProductsPage {
 
-    private final AndroidDriver driver;
-    @FindBy(id = "com.androidsample.generalstore:id/productAddCart")
-    private List<WebElement> addTOCartButtons;
+    @FindBy(id=ProductsPageLocators.ADD_TO_CART_BUTTONS)
+    private List<WebElement> addToCartButtons;
 
-    @FindBy(id = "com.androidsample.generalstore:id/productName")
+    @FindBy(id=ProductsPageLocators.PRODUCTS)
     private List<WebElement> products;
 
-    @FindBy(id = "com.androidsample.generalstore:id/productPrice")
+    @FindBy(id=ProductsPageLocators.PRODUCT_COSTS)
     private List<WebElement> productCosts;
 
-    @FindBy(id = "com.androidsample.generalstore:id/appbar_btn_cart")
+    @FindBy(id=ProductsPageLocators.NAV_TO_CART_BTN)
     private WebElement navToCartBtn;
 
-    public AddToCartPage(AndroidDriver driver) {
+    public ProductsPage(AndroidDriver driver) {
         super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
+    @Override
     public void addItemToCart(String itemName){
         scrollIntoView(itemName);
         for(int i=0; i<products.size(); i++){
             if(products.get(i).getText().equalsIgnoreCase(itemName)){
-                addTOCartButtons.get(i).click();
+                addToCartButtons.get(i).click();
             }
         }
     }
 
+    @Override
     public CartPage navigateToCart(){
         this.navToCartBtn.click();
         return new CartPage(driver);
     }
 
+    @Override
     public double getItemPrice(String itemName){
         scrollIntoView(itemName);
         for(int i=0; i < products.size(); i++){

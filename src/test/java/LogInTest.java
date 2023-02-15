@@ -1,5 +1,5 @@
 import TestUtils.BaseTest;
-import com.shashank.android.poms.LogInPage;
+import com.shashank.android.poms.login.impl.LogInPage;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -24,7 +24,7 @@ public class LogInTest extends BaseTest {
     public void logInError() throws InterruptedException {
         LogInPage logInForm = new LogInPage(driver);
         logInForm.submitForm();
-        logInForm.verifyErrorMessage("Please enter your names");
+        logInForm.verifyErrorMessage("Please enter your name");
         Thread.sleep(2000);
     }
 
