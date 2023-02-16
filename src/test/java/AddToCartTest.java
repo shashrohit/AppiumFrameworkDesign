@@ -21,7 +21,6 @@ public class AddToCartTest extends BaseTest {
         ProductsPage products = logInPage.submitForm();
         Thread.sleep(2000);
 
-
         String [] testProducts = new String[]{"Converse All Star", "Air Jordan 9 Retro"};
         double expectedCost = 0;
         products.addProductToCart(testProducts[0]);

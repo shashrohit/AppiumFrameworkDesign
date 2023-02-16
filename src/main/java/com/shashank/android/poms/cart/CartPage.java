@@ -5,7 +5,9 @@ import com.shashank.android.poms.cart.impl.ICartPage;
 import com.shashank.android.utils.AndroidActions;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import java.util.*;
 
@@ -13,21 +15,27 @@ public class CartPage extends AndroidActions implements ICartPage {
 
     private final AndroidDriver driver;
 
-    @FindBy(id= CartPageLocators.ACTUAL_COST)
+    @FindBy(how=How.ID, using=CartPageLocators.ACTUAL_COST)
+    @CacheLookup
     private WebElement actualCost;
 
-    @FindBy(id=CartPageLocators.TERMS_BUTTON)
+    @FindBy(how=How.ID, using=CartPageLocators.TERMS_BUTTON)
+    @CacheLookup
     private WebElement termsBtn;
 
-    @FindBy(id=CartPageLocators.TERMS_CLOSE_BUTTON)
+    @FindBy(how=How.ID, using=CartPageLocators.TERMS_CLOSE_BUTTON)
+    @CacheLookup
     private WebElement termsCloseBtn;
-    @FindBy(xpath=CartPageLocators.SEND_EMAIL_CHECKBOX)
+    @FindBy(how=How.XPATH, using=CartPageLocators.SEND_EMAIL_CHECKBOX)
+    @CacheLookup
     private WebElement sendEmailsCheckbox;
 
-    @FindBy(id=CartPageLocators.PROCEED_TO_WEBSITE)
+    @FindBy(how=How.ID, using=CartPageLocators.PROCEED_TO_WEBSITE)
+    @CacheLookup
     private WebElement proceedToWebsite;
 
-    @FindBy(id=CartPageLocators.PRODUCT_NAME)
+    @FindBy(how=How.ID, using=CartPageLocators.PRODUCT_NAME)
+    @CacheLookup
     private List<WebElement> products;
 
     public CartPage(AndroidDriver driver) {

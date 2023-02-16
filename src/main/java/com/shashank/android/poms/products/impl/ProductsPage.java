@@ -5,22 +5,25 @@ import com.shashank.android.poms.products.IProductsPage;
 import com.shashank.android.utils.AndroidActions;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import java.util.List;
 
 public class ProductsPage extends AndroidActions implements IProductsPage {
 
-    @FindBy(id=ProductsPageLocators.ADD_TO_CART_BUTTONS)
+    @FindBy(how=How.ID, using=ProductsPageLocators.ADD_TO_CART_BUTTONS)
     private List<WebElement> addToCartButtons;
 
-    @FindBy(id=ProductsPageLocators.PRODUCTS)
+    @FindBy(how= How.ID, using=ProductsPageLocators.PRODUCTS)
     private List<WebElement> products;
 
-    @FindBy(id=ProductsPageLocators.PRODUCT_COSTS)
+    @FindBy(how=How.ID, using=ProductsPageLocators.PRODUCT_COSTS)
     private List<WebElement> productCosts;
 
-    @FindBy(id=ProductsPageLocators.NAV_TO_CART_BTN)
+    @FindBy(how=How.ID, using=ProductsPageLocators.NAV_TO_CART_BTN)
+    @CacheLookup
     private WebElement navToCartBtn;
 
     public ProductsPage(AndroidDriver driver) {

@@ -4,29 +4,36 @@ import com.shashank.android.poms.products.impl.ProductsPage;
 import com.shashank.android.poms.login.ILogInPage;
 import com.shashank.android.utils.AndroidActions;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
 public class LogInPage extends AndroidActions implements ILogInPage {
-    @FindBy(id=LogInPageLocators.COUNTRY_DROP_DOWN)
+    @FindBy(how=How.ID, using=LogInPageLocators.COUNTRY_DROP_DOWN)
+    @CacheLookup
     private WebElement countryDropDown;
-    @FindBy(id=LogInPageLocators.NAME_FIELD)
+    @FindBy(how=How.ID, using=LogInPageLocators.NAME_FIELD)
+    @CacheLookup
     private WebElement nameField;
 
-    @FindBy(id=LogInPageLocators.MALE_RADIO)
+    @FindBy(how=How.ID, using=LogInPageLocators.MALE_RADIO)
+    @CacheLookup
     private WebElement maleRadio;
 
-    @AndroidFindBy(id=LogInPageLocators.FEMALE_RADIO)
+    @FindBy(how=How.ID, using=LogInPageLocators.FEMALE_RADIO)
+    @CacheLookup
     private WebElement femaleRadio;
 
-    @FindBy(id=LogInPageLocators.SUBMIT_BUTTON)
+    @FindBy(how=How.ID, using=LogInPageLocators.SUBMIT_BUTTON)
+    @CacheLookup
     private WebElement submitButton;
 
-    @FindBy(xpath=LogInPageLocators.ERROR_TOAST_MESSAGE)
+    @FindBy(how=How.XPATH, using=LogInPageLocators.ERROR_TOAST_MESSAGE)
+    @CacheLookup
     private WebElement errorToastMessage;
 
     public LogInPage(AndroidDriver driver){
