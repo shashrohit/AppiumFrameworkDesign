@@ -11,21 +11,23 @@ public class LogInTest extends BaseTest {
 
     @Test(dependsOnMethods = {"logInError"}, dataProvider = "getLoginData")
     public void logIn(HashMap<String, String> input) throws InterruptedException {
-
+        log.info("Log in positive test has started");
         logInPage.selectCountry(input.get("country"));
         logInPage.setGender(input.get("gender"));
         logInPage.setNameField(input.get("name"));
         logInPage.submitForm();
         Thread.sleep(2000);
         logInPage.navigateBack();
+        log.info("Log in positive test has finished");
     }
 
-    @Test(groups = "Smoke")
+    @Test
     public void logInError() throws InterruptedException {
-        LogInPage logInForm = new LogInPage(driver);
-        logInForm.submitForm();
-        logInForm.verifyErrorMessage("Please enter your name");
+        log.info("Log in negative test has started");
+        logInPage.submitForm();
+        logInPage.verifyErrorMessage("Please enter your name");
         Thread.sleep(2000);
+        log.info("Log in negative test has finished");
     }
 
     @DataProvider

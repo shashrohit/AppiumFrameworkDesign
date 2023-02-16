@@ -15,12 +15,17 @@ public class AddToCartTest extends BaseTest {
 
     @Test
     public void addToCart() throws InterruptedException {
+        log.info("Add to cart test has started");
+
+        log.info("Logging in");
         logInPage.selectCountry("Argentina");
         logInPage.setGender("female");
         logInPage.setNameField("Shashank");
         ProductsPage products = logInPage.submitForm();
         Thread.sleep(2000);
+        log.info("Log in successful");
 
+        log.info("Adding products to cart");
         String [] testProducts = new String[]{"Converse All Star", "Air Jordan 9 Retro"};
         double expectedCost = 0;
         products.addProductToCart(testProducts[0]);
@@ -30,9 +35,11 @@ public class AddToCartTest extends BaseTest {
         expectedCost += products.getProductPrice(testProducts[1]);
         Thread.sleep(2000);
 
+        log.info("Navigating to cart");
         CartPage cartPage = products.navigateToCart();
         Thread.sleep(2000);
 
+        log.info("Verifying cart");
         double actualCost = cartPage.getTotalPurchaseAmount();
         Assert.assertEquals(expectedCost, actualCost);
 
@@ -41,6 +48,7 @@ public class AddToCartTest extends BaseTest {
 
         Assert.assertEquals(testProducts, actualProducts);
 
+        log.info("Navigating to website");
         cartPage.acceptTerms();
         cartPage.selectSendEmailsOption();
         cartPage.proceedToWebsite();
