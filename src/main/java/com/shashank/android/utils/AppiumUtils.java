@@ -3,7 +3,6 @@ package com.shashank.android.utils;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import org.apache.commons.io.FileUtils;
@@ -16,13 +15,14 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
+import static com.shashank.android.utils.Constants.REPORT_PATH;
 
 public class AppiumUtils {
 
     public List<HashMap<String, String>> getJsonData(String filePath) throws IOException {
         String content = FileUtils.readFileToString(new File(filePath), StandardCharsets.UTF_8);
         ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(content,
+        return mapper.readValue(new File(filePath),
                 new TypeReference<List<HashMap<String, String>>>() {});
     }
 
@@ -42,10 +42,9 @@ public class AppiumUtils {
     }
 
     public String takeScreenshot(String testName, AppiumDriver driver) throws IOException {
-        String reportPath = System.getProperty("user.dir") + "/reports/" + testName + ".png";
+        String screenshotPath = REPORT_PATH + testName + ".png";
         File source = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(source, new File(reportPath));
-        return reportPath;
+        FileUtils.copyFile(source, new File(screenshotPath));
+        return screenshotPath;
     }
-
 }

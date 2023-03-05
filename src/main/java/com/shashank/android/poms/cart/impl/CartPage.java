@@ -1,7 +1,6 @@
 package com.shashank.android.poms.cart.impl;
 
 import com.shashank.android.poms.cart.ICartPage;
-import com.shashank.android.poms.cart.impl.CartPageLocators;
 import com.shashank.android.utils.AndroidActions;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
@@ -12,8 +11,6 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.*;
 
 public class CartPage extends AndroidActions implements ICartPage {
-
-    private final AndroidDriver driver;
 
     @FindBy(how=How.ID, using=CartPageLocators.ACTUAL_COST)
     @CacheLookup
@@ -40,7 +37,6 @@ public class CartPage extends AndroidActions implements ICartPage {
 
     public CartPage(AndroidDriver driver) {
         super(driver);
-        this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
