@@ -3,6 +3,7 @@ package com.shashank.android.utils;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import org.apache.commons.io.FileUtils;

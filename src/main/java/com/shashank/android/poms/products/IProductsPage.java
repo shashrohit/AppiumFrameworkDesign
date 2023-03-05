@@ -1,6 +1,6 @@
 package com.shashank.android.poms.products;
 
-import com.shashank.android.poms.cart.CartPage;
+import com.shashank.android.poms.cart.impl.CartPage;
 
 public interface IProductsPage {
 

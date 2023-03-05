@@ -1,4 +1,4 @@
-package com.shashank.android.poms.cart.impl;
+package com.shashank.android.poms.cart;
 
 public interface ICartPage {
     public void selectSendEmailsOption();

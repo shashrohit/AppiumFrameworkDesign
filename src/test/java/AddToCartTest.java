@@ -1,6 +1,6 @@
 import TestUtils.BaseTest;
 import com.shashank.android.poms.products.impl.ProductsPage;
-import com.shashank.android.poms.cart.CartPage;
+import com.shashank.android.poms.cart.impl.CartPage;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;

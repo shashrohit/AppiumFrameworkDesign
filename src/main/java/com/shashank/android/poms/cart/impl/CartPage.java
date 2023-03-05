@@ -1,7 +1,7 @@
-package com.shashank.android.poms.cart;
+package com.shashank.android.poms.cart.impl;
 
+import com.shashank.android.poms.cart.ICartPage;
 import com.shashank.android.poms.cart.impl.CartPageLocators;
-import com.shashank.android.poms.cart.impl.ICartPage;
 import com.shashank.android.utils.AndroidActions;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;

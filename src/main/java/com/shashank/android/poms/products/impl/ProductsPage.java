@@ -1,6 +1,6 @@
 package com.shashank.android.poms.products.impl;
 
-import com.shashank.android.poms.cart.CartPage;
+import com.shashank.android.poms.cart.impl.CartPage;
 import com.shashank.android.poms.products.IProductsPage;
 import com.shashank.android.utils.AndroidActions;
 import io.appium.java_client.android.AndroidDriver;
