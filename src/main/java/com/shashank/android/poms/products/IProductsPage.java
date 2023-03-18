@@ -4,11 +4,13 @@ import com.shashank.android.poms.cart.impl.CartPage;
 
 public interface IProductsPage {
 
-    public void addProductToCart(String itemName);
+    void addProductToCart(String itemName);
 
-    public void removeProductToCart(String itemName);
+    void removeProductFromCart(String itemName);
 
-    public CartPage navigateToCart();
+    CartPage navigateToCart();
 
-    public double getProductPrice(String itemName);
+    double getProductPrice(String itemName);
+
+    void verifyProductPrice(String itemName, double price);
 }

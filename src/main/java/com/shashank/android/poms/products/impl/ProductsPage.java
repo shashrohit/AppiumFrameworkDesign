@@ -9,7 +9,10 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProductsPage extends AndroidActions implements IProductsPage {
 
@@ -34,15 +37,15 @@ public class ProductsPage extends AndroidActions implements IProductsPage {
     @Override
     public void addProductToCart(String itemName){
         scrollIntoView(itemName);
-        for(int i=0; i<products.size(); i++){
-            if(products.get(i).getText().equalsIgnoreCase(itemName)){
-                addToCartButtons.get(i).click();
-            }
-        }
+        products.stream()
+                .filter(p -> p.getText().equalsIgnoreCase(itemName))
+                .collect(Collectors.toList())
+                .get(0)
+                .click();
     }
 
     @Override
-    public void removeProductToCart(String itemName) {
+    public void removeProductFromCart(String itemName) {
         this.addProductToCart(itemName);
     }
 
@@ -63,4 +66,8 @@ public class ProductsPage extends AndroidActions implements IProductsPage {
         return 0;
     }
 
+    @Override
+    public void verifyProductPrice(String itemName, double price){
+        Assert.assertEquals(getProductPrice(itemName), price);
+    }
 }

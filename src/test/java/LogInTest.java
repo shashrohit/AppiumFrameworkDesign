@@ -1,11 +1,11 @@
 import TestUtils.BaseTest;
-import com.shashank.android.poms.login.impl.LogInPage;
+import com.shashank.android.utils.AppiumUtils;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import static TestUtils.Constants.LOGIN_DATA_FILE;
 
 public class LogInTest extends BaseTest {
 
@@ -32,7 +32,7 @@ public class LogInTest extends BaseTest {
 
     @DataProvider
     public Object[][] getLoginData() throws IOException {
-        List<HashMap<String, String>> data = getJsonData(System.getProperty("user.dir") + "//src//test//java//testdata//logindata.json");
+        List<HashMap<String, String>> data = AppiumUtils.getJsonData(LOGIN_DATA_FILE);
         return new Object[][]{{data.get(0)}, {data.get(1)}};
     }
 }

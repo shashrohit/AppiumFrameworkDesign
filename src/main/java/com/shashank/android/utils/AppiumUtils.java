@@ -11,7 +11,6 @@ import org.openqa.selenium.TakesScreenshot;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
@@ -19,14 +18,13 @@ import static com.shashank.android.utils.Constants.REPORT_PATH;
 
 public class AppiumUtils {
 
-    public List<HashMap<String, String>> getJsonData(String filePath) throws IOException {
-        String content = FileUtils.readFileToString(new File(filePath), StandardCharsets.UTF_8);
+    public static List<HashMap<String, String>> getJsonData(String filePath) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(new File(filePath),
                 new TypeReference<List<HashMap<String, String>>>() {});
     }
 
-    public AppiumDriverLocalService startAppiumService(String ipAddress, int port){
+    public static AppiumDriverLocalService startAppiumService(String ipAddress, int port){
         AppiumDriverLocalService service = new AppiumServiceBuilder()
                 .withAppiumJS(new File("C:\\Users\\DS\\AppData\\Roaming\\npm\\node_modules\\appium\\build\\lib\\main.js"))
                 .withIPAddress(ipAddress).usingPort(port).build();
@@ -34,14 +32,14 @@ public class AppiumUtils {
         return service;
     }
 
-    public String getProperty(String propertyFilePath, String propertyName) throws IOException {
+    public static String getProperty(String propertyFilePath, String propertyName) throws IOException {
         Properties prop = new Properties();
         FileInputStream fip = new FileInputStream(propertyFilePath);
         prop.load(fip);
         return prop.getProperty(propertyName);
     }
 
-    public String takeScreenshot(String testName, AppiumDriver driver) throws IOException {
+    public static String takeScreenshot(String testName, AppiumDriver driver) throws IOException {
         String screenshotPath = REPORT_PATH + testName + ".png";
         File source = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(source, new File(screenshotPath));

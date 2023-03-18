@@ -1,12 +1,15 @@
 package com.shashank.android.poms.cart;
 
-public interface ICartPage {
-    public void selectSendEmailsOption();
-    public void acceptTerms() throws InterruptedException;
-    public double getTotalPurchaseAmount();
-    public void proceedToWebsite();
+ public interface ICartPage {
+     void selectSendEmailsOption();
+     void acceptTerms() throws InterruptedException;
+     double getTotalPurchaseAmount();
 
-    public int getProductsCount();
+     void verifyTotalPurchaseAmount(double amount);
+     void proceedToWebsite();
 
-    public String[] getProductsNames();
+     int getProductsCount();
+     void verifyProductsCount(int count);
+
+     String[] getProductsNames();
 }

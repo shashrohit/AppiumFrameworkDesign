@@ -15,7 +15,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.BeforeSuite;
 
-public class BaseTest extends AppiumUtils {
+public class BaseTest {
     protected AppiumDriverLocalService service;
     private AndroidDriver driver;
     protected LogInPage logInPage;
@@ -29,11 +29,11 @@ public class BaseTest extends AppiumUtils {
     @BeforeClass(alwaysRun = true)
     public void configureAppiumServer() throws IOException {
 
-        String ip = getProperty(Constants.PROPERTY_FILE_PATH, "ipAddress");
-        int port = Integer.parseInt(getProperty(Constants.PROPERTY_FILE_PATH, "port"));
-        String deviceName = getProperty(Constants.PROPERTY_FILE_PATH, "androidDeviceName");
+        String ip = AppiumUtils.getProperty(Constants.PROPERTY_FILE_PATH, "ipAddress");
+        int port = Integer.parseInt(AppiumUtils.getProperty(Constants.PROPERTY_FILE_PATH, "port"));
+        String deviceName = AppiumUtils.getProperty(Constants.PROPERTY_FILE_PATH, "androidDeviceName");
 
-        service = startAppiumService(ip, port);
+        service = AppiumUtils.startAppiumService(ip, port);
 
         UiAutomator2Options options = new UiAutomator2Options();
         options.setDeviceName(deviceName);

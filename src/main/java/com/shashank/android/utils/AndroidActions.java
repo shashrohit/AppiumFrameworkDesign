@@ -10,7 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WrapsElement;
 import org.openqa.selenium.remote.RemoteWebElement;
 
-public class AndroidActions extends AppiumUtils {
+public class AndroidActions {
 
     protected AndroidDriver driver;
     public AndroidActions(AndroidDriver driver){

@@ -8,6 +8,8 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+
 import java.util.*;
 
 public class CartPage extends AndroidActions implements ICartPage {
@@ -58,6 +60,11 @@ public class CartPage extends AndroidActions implements ICartPage {
     }
 
     @Override
+    public void verifyTotalPurchaseAmount(double amount){
+        Assert.assertEquals(getTotalPurchaseAmount(), amount);
+    }
+
+    @Override
     public void proceedToWebsite(){
         proceedToWebsite.click();
     }
@@ -68,11 +75,14 @@ public class CartPage extends AndroidActions implements ICartPage {
     }
 
     @Override
+    public void verifyProductsCount(int count) {
+        Assert.assertEquals(getProductsCount(), count);
+    }
+
+    @Override
     public String[] getProductsNames() {
-        List<String> productNames = new ArrayList<>();
-        for(WebElement product: products){
-            productNames.add(product.getText());
-        }
-        return productNames.toArray(new String[0]);
+        return products.stream()
+                .map(WebElement::getText)
+                .toArray(String[]::new);
     }
 }
