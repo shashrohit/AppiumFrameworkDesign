@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
+import static com.shashank.android.utils.Constants.REPORT_EXTENSION;
 import static com.shashank.android.utils.Constants.REPORT_PATH;
 
 public class AppiumUtils {
@@ -40,7 +41,7 @@ public class AppiumUtils {
     }
 
     public static String takeScreenshot(String testName, AppiumDriver driver) throws IOException {
-        String screenshotPath = REPORT_PATH + testName + ".png";
+        String screenshotPath = REPORT_PATH + testName + REPORT_EXTENSION;
         File source = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(source, new File(screenshotPath));
         return screenshotPath;

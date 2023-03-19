@@ -8,10 +8,9 @@ import io.appium.java_client.AppiumDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-
 import java.io.IOException;
 
-public class Listeners extends AppiumUtils implements ITestListener {
+public class Listeners implements ITestListener {
 
     ExtentReports report = ExtentReporterNG.getReporterObject();
     ExtentTest test;
@@ -36,7 +35,7 @@ public class Listeners extends AppiumUtils implements ITestListener {
             throw new RuntimeException(e);
         }
         try {
-            String screenshotPath = takeScreenshot(iTestResult.getMethod().getMethodName(), driver);
+            String screenshotPath = AppiumUtils.takeScreenshot(iTestResult.getMethod().getMethodName(), driver);
             System.out.println(screenshotPath);
             test.addScreenCaptureFromPath(screenshotPath);
         } catch (IOException e) {
