@@ -14,9 +14,19 @@ public class Hooks {
     private AndroidDriver driver;
     private AppiumDriverLocalService service;
     private static LogInPage logInPage;
+    private static final String appiumServiceIP;
+    private static final int appiumServicePort;
+    private static final String deviceName;
 
-    private String appiumServiceIP;
-    private int appiumServicePort;
+    static {
+        try {
+            appiumServiceIP = AppiumUtils.getProperty(Constants.PROPERTY_FILE_PATH, "ipAddress");
+            appiumServicePort= Integer.parseInt(AppiumUtils.getProperty(Constants.PROPERTY_FILE_PATH, "port"));
+            deviceName = AppiumUtils.getProperty(Constants.PROPERTY_FILE_PATH, "androidDeviceName");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @Before
     public void setUp() throws IOException, InterruptedException {
@@ -26,22 +36,19 @@ public class Hooks {
         waitForApkToOpen();
     }
 
-    private void startAppiumLocalService() throws IOException {
-        appiumServiceIP = AppiumUtils.getProperty(Constants.PROPERTY_FILE_PATH, "ipAddress");
-        appiumServicePort= Integer.parseInt(AppiumUtils.getProperty(Constants.PROPERTY_FILE_PATH, "port"));
+    private void startAppiumLocalService() {
         service = AppiumUtils.startAppiumService(appiumServiceIP, appiumServicePort);
     }
 
     private void startAndroidDriver() throws IOException {
-        String deviceName = AppiumUtils.getProperty(Constants.PROPERTY_FILE_PATH, "androidDeviceName");
         UiAutomator2Options options = new UiAutomator2Options();
         options.setDeviceName(deviceName);
         options.setApp(Constants.APK_PATH);
-        driver = new AndroidDriver(new URL(getAppiumUrl(appiumServiceIP, appiumServicePort)), options);
+        driver = new AndroidDriver(new URL(getAppiumUrl()), options);
     }
 
-    private String getAppiumUrl(String ip, int port){
-        return "http://" + ip + ":" + port;
+    private String getAppiumUrl(){
+        return "http://" + appiumServicePort + ":" + appiumServicePort;
     }
 
     public static LogInPage getLogInPageObject(){
